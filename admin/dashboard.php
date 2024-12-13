@@ -7,51 +7,57 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f6f9;
+            background-color: #f5f7fb;
         }
-        .sidebar {
-            background-color: #3e8e41; /* Updated color */
+
+        .gradient-sidebar {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
         }
+
         .hover-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(70, 70, 70, 0.15);
         }
+
+        .sidebar {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
         .main-content {
-            background-color: #eef2f5;
+            background-color: #f5f7fb;
         }
-        .card-icon {
-            color: #3e8e41; /* Updated color */
+
+        .profile-img {
+            border-color: #374151;
         }
+
         .card-title {
-            color: #3e8e41; /* Updated color */
+            color: #374151;
         }
-        .link:hover {
-            color: #3e8e41; /* Updated color */
+
+        .card-icon {
+            color: #1f2937;
         }
+
         .notification-icon {
-            color: #3e8e41; /* Updated color */
+            color: #374151;
         }
-        .profile-img:hover {
-            border-color: #3e8e41; /* Updated color */
-        }
-        .button-primary {
-            background-color: #3e8e41;
-            color: #fff;
-        }
-        .button-primary:hover {
-            background-color: #369135;
+
+        .link:hover {
+            background-color: #1f2937;
         }
     </style>
 </head>
 <body class="antialiased">
     <div class="flex h-screen">
         <!-- Sidebar Modern -->
-        <div class="w-64 sidebar text-white p-6">
+        <div class="w-64 sidebar text-white p-6 gradient-sidebar">
             <div class="flex items-center mb-8">
-                <img src="../public/images/logoas.png" alt="Logo" class="h-10 w-10 mr-3 rounded-full">
+                <img src="../public/images/pp.jpg" alt="Logo" class="h-10 w-10 mr-3 rounded-full">
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
             </div>
 
@@ -63,12 +69,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="manage_users.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                        <a href="users.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
                             <i class="ri-user-settings-line mr-3"></i>Manajemen Pengguna
                         </a>
                     </li>
                     <li>
-                        <a href="manage_document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                        <a href="document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
                             <i class="ri-folder-2-line mr-3"></i>Dokumen
                         </a>
                     </li>
@@ -194,17 +200,15 @@
                         </div>
                         <div class="flex items-center justify-between border-b pb-2 last:border-b-0">
                             <div class="flex items-center">
-                                <div class="bg-green-100 p-2 rounded mr-4">
-                                    <i class="ri-user-add-line text-green-500"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">User2</p>
-                                    <p class="text-sm text-gray-500">user2@example.com</p>
-                                </div>
-                            </div>
-                            <span class="text-sm text-gray-500">02 Jan 2024</span>
+                            <div class="bg-green-100 p-2 rounded mr-4">
+                            <i class="ri-user-add-line text-green-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">User2</p>
+                            <p class="text-sm text-gray-500">user2@example.com</p>
                         </div>
                     </div>
+                    <span class="text-sm text-gray-500">02 Jan 2024</span>
                 </div>
             </div>
         </div>

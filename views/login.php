@@ -7,31 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f7fa;
-        }
-
-        .gradient-header {
-            background: linear-gradient(135deg, #3e8e41, #2a642e);
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
         }
 
         .hover-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(70, 70, 70, 0.15);
         }
     </style>
 </head>
-<body class="font-poppins bg-gray-100">
-   
-
+<body class="font-inter bg-gray-100">
     <div class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto mt-16">
         <div class="relative w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-200">
             <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
                 <nav class="flex space-x-4">
-                    <a href="#" class="text-green-700 font-semibold border-b-2 border-green-700 pb-2 inline-flex items-center">
+                    <a href="#" class="text-gray-700 font-semibold border-b-2 border-gray-700 pb-2 inline-flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
@@ -53,7 +47,7 @@
                             type="email" 
                             id="email" 
                             required 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -64,7 +58,7 @@
                                 type="password" 
                                 id="password" 
                                 required 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
                                 placeholder="Enter your password"
                             />
                             <button 
@@ -83,7 +77,7 @@
                             <input 
                                 id="remember" 
                                 type="checkbox" 
-                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                                class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
                             />
                             <label for="remember" class="ml-2 block text-sm text-gray-900">
                                 Remember me
@@ -93,7 +87,7 @@
                     <div>
                         <button 
                             type="submit" 
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         >
                             Sign In
                         </button>
