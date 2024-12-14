@@ -6,6 +6,8 @@
     <title>Dashboard Admin - Manajemen Dokumen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -56,11 +58,10 @@
     <div class="flex h-screen">
         <!-- Sidebar Modern -->
         <div class="w-64 sidebar text-white p-6 gradient-sidebar">
-            <div class="flex items-center mb-8">
-                <img src="../public/images/pp.jpg" alt="Logo" class="h-10 w-10 mr-3 rounded-full">
+        <div class="flex items-center mb-8">
+            <i class="ri-folder-line text-4xl mr-3"></i>
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
             </div>
-
             <nav>
                 <ul class="space-y-2">
                     <li>
