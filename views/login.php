@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Document Management System</title>
+    <title>Dokumaster</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
                 </button>
             </div>
             <div class="p-6">
-                <form class="space-y-6" id="loginForm">
+                <form class="space-y-6" id="loginForm" action="login.php" method="POST">
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email address</label>
                         <input 

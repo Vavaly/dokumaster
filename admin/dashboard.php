@@ -58,10 +58,11 @@
     <div class="flex h-screen">
         <!-- Sidebar Modern -->
         <div class="w-64 sidebar text-white p-6 gradient-sidebar">
-        <div class="flex items-center mb-8">
-            <i class="ri-folder-line text-4xl mr-3"></i>
+            <div class="flex items-center mb-8">
+                <i class="ri-folder-line mr-3 text-4xl"></i> 
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
             </div>
+
             <nav>
                 <ul class="space-y-2">
                     <li>

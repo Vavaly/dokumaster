@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen Pengguna - Dashboard Admin</title>
+    <title>Manajemen Dokumen - Dashboard Pengguna</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
@@ -48,33 +48,33 @@
 </head>
 <body class="antialiased">
     <div class="flex h-screen">
-        <!-- Sidebar Modern -->
+        <!-- Sidebar Modern untuk Pengguna -->
         <div class="w-64 sidebar text-white p-6 gradient-sidebar">
             <div class="flex items-center mb-8">
                 <i class="ri-folder-line mr-3 text-4xl"></i> 
-                <h1 class="text-xl font-bold">Dokumen Admin</h1>
+                <h1 class="text-xl font-bold">Dokumen Saya</h1>
             </div>
 
             <nav>
                 <ul class="space-y-2">
                     <li>
-                        <a href="dashboard.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-dashboard-line mr-3"></i>Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="users.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-user-settings-line mr-3"></i>Manajemen Pengguna
+                        <a href="home.php" class="flex items-center px-4 py-2 rounded-lg bg-white/20 transition link">
+                            <i class="ri-home-line mr-3"></i>Home
                         </a>
                     </li>
                     <li>
                         <a href="document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-folder-2-line mr-3"></i>Dokumen
+                            <i class="ri-folder-2-line mr-3"></i>Dokumen Saya
                         </a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-settings-3-line mr-3"></i>Pengaturan
+                            <i class="ri-upload-cloud-line mr-3"></i>Unggah Dokumen
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                            <i class="ri-share-line mr-3"></i>Dokumen Berbagi
                         </a>
                     </li>
                 </ul>
@@ -85,7 +85,7 @@
         <div class="flex-1 overflow-y-auto main-content p-8">
             <!-- Header -->
             <div class="flex justify-between items-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800">Manajemen Pengguna</h1>
+                <h1 class="text-3xl font-bold text-gray-800">Dokumen Saya</h1>
                 <div class="flex items-center space-x-4">
                     <div class="bg-white shadow rounded-full p-2 profile-img">
                         <i class="ri-notification-line notification-icon"></i>
@@ -94,39 +94,54 @@
                 </div>
             </div>
 
-            <!-- Tombol Tambah Pengguna -->
-            <div class="mb-6">
+            <!-- Filter dan Pencarian -->
+            <div class="mb-6 flex justify-between">
+                <div class="flex space-x-4">
+                    <select class="bg-white border rounded-lg px-3 py-2">
+                        <option>Semua Kategori</option>
+                        <option>Dokumen Pribadi</option>
+                        <option>Dokumen Kerja</option>
+                        <option>Lainnya</option>
+                    </select>
+                    <input type="text" placeholder="Cari dokumen..." class="border rounded-lg px-3 py-2 w-64">
+                </div>
                 <button class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition flex items-center">
-                    <i class="ri-user-add-line mr-2"></i> Tambah Pengguna Baru
+                    <i class="ri-add-line mr-2"></i> Unggah Dokumen Baru
                 </button>
             </div>
 
-            <!-- Tabel Manajemen Pengguna -->
+            <!-- Tabel Dokumen Pengguna -->
             <div class="bg-white rounded-xl shadow-md p-6">
                 <table class="w-full">
                     <thead>
                         <tr class="border-b">
-                            <th class="text-left py-3 px-2">ID</th>
-                            <th class="text-left py-3 px-2">Username</th>
-                            <th class="text-left py-3 px-2">Email</th>
-                            <th class="text-left py-3 px-2">Peran</th>
+                            <th class="text-left py-3 px-2">Nama Dokumen</th>
+                            <th class="text-left py-3 px-2">Kategori</th>
+                            <th class="text-left py-3 px-2">Ukuran</th>
                             <th class="text-left py-3 px-2">Tanggal Dibuat</th>
                             <th class="text-left py-3 px-2">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border-b hover:bg-gray-50 transition">
-                            <td class="py-3 px-2">1</td>
-                            <td class="py-3 px-2">Username1</td>
-                            <td class="py-3 px-2">user1@example.com</td>
-                            <td class="py-3 px-2">
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">admin</span>
+                            <td class="py-3 px-2 flex items-center">
+                                <i class="ri-file-line mr-2 text-gray-700"></i>
+                                Laporan_Proyek.pdf
                             </td>
-                            <td class="py-3 px-2">01 Jan 2024</td>
+                            <td class="py-3 px-2">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                                    Dokumen Kerja
+                                </span>
+                            </td>
+                            <td class="py-3 px-2">500 KB</td>
+                            <td class="py-3 px-2">15 Des 2024</td>
                             <td class="py-3 px-2">
                                 <div class="flex space-x-2">
                                     <button class="text-gray-700 hover:text-gray-900">
-                                        <i class="ri-edit-line"></i>
+                                        <i class="ri-eye-line"></i>
+                                    </button>
+                                    <button class="text-gray-700 hover:text-gray-900">
+                                        <i class="ri-download-line"></i>
                                     </button>
                                     <button class="text-red-500 hover:text-red-700">
                                         <i class="ri-delete-bin-line"></i>
@@ -135,17 +150,24 @@
                             </td>
                         </tr>
                         <tr class="border-b hover:bg-gray-50 transition">
-                            <td class="py-3 px-2">2</td>
-                            <td class="py-3 px-2">Username2</td>
-                            <td class="py-3 px-2">user2@example.com</td>
-                            <td class="py-3 px-2">
-                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">user</span>
+                            <td class="py-3 px-2 flex items-center">
+                                <i class="ri-file-line mr-2 text-gray-700"></i>
+                                Catatan_Pribadi.docx
                             </td>
-                            <td class="py-3 px-2">02 Jan 2024</td>
+                            <td class="py-3 px-2">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                                    Dokumen Pribadi
+                                </span>
+                            </td>
+                            <td class="py-3 px-2">250 KB</td>
+                            <td class="py-3 px-2">10 Des 2024</td>
                             <td class="py-3 px-2">
                                 <div class="flex space-x-2">
                                     <button class="text-gray-700 hover:text-gray-900">
-                                        <i class="ri-edit-line"></i>
+                                        <i class="ri-eye-line"></i>
+                                    </button>
+                                    <button class="text-gray-700 hover:text-gray-900">
+                                        <i class="ri-download-line"></i>
                                     </button>
                                     <button class="text-red-500 hover:text-red-700">
                                         <i class="ri-delete-bin-line"></i>

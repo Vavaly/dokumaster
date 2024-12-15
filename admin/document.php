@@ -49,9 +49,9 @@
 <body class="antialiased">
     <div class="flex h-screen">
         <!-- Sidebar Modern -->
-        <div class="w-64 sidebar text-white p-6">
+        <div class="w-64 sidebar text-white p-6 gradient-sidebar">
             <div class="flex items-center mb-8">
-                <img src="../public/images/pp.jpg" alt="Logo" class="h-10 w-10 mr-3 rounded-full">
+                <i class="ri-folder-line mr-3 text-4xl"></i> 
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
             </div>
 
@@ -136,7 +136,7 @@
                                     Dokumen Resmi
                                 </span>
                             </td>
-                            <td class="py-3 px-2">User1</td>
+                            <td class="py-3 px-2">Rival</td>
                             <td class="py-3 px-2">500 KB</td>
                             <td class="py-3 px-2">01 Jan 2024</td>
                             <td class="py-3 px-2">
@@ -146,6 +146,9 @@
                                     </button>
                                     <button class="text-gray-700 hover:text-gray-900">
                                         <i class="ri-download-line"></i>
+                                    </button>
+                                    <button class="text-blue-600 hover:text-blue-700 transition">
+                                        <i class="ri-edit-line"></i>
                                     </button>
                                     <button class="text-red-500 hover:text-red-700">
                                         <i class="ri-delete-bin-line"></i>
@@ -164,7 +167,7 @@
                                     Laporan
                                 </span>
                             </td>
-                            <td class="py-3 px-2">User2</td>
+                            <td class="py-3 px-2">Lutfi</td>
                             <td class="py-3 px-2">750 KB</td>
                             <td class="py-3 px-2">02 Jan 2024</td>
                             <td class="py-3 px-2">
@@ -174,6 +177,8 @@
                                     </button>
                                     <button class="text-gray-700 hover:text-gray-900">
                                         <i class="ri-download-line"></i>
+                                    </button>
+                                    <button class="text-blue-600 hover:text-blue-700 transition"><i class="ri-edit-line"></i>
                                     </button>
                                     <button class="text-red-500 hover:text-red-700">
                                         <i class="ri-delete-bin-line"></i>

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
 
         body {
             font-family: 'Inter', sans-serif;
@@ -63,19 +64,17 @@
             <div class="flex items-center mb-6">
                 <i class="ri-folder-4-line text-3xl mr-3"></i>
                 <h2 class="text-2xl font-bold">Menu Navigasi</h2>
+                <button id="tambah-folder" class="ml-auto text-white hover:bg-white/20 p-2 rounded">
+                    <i class="ri-add-line"></i>
+                </button>
             </div>
             <nav>
-                <ul class="space-y-2">
+                <ul class="space-y-2" id="folder-list">
                     <li>
-                        <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-white/20 transition">
+                        <a href="document.php" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-white/20 transition">
                             <i class="ri-folder-2-line"></i>
                             <span>Dokumen</span>
                         </a>
-                        <ul class="pl-6 mt-2 space-y-1">
-                            <li><a href="#" class="block py-1 hover:bg-white/10 rounded">Laporan Weekly</a></li>
-                            <li><a href="#" class="block py-1 hover:bg-white/10 rounded">Surat Resmi</a></li>
-                            <li><a href="#" class="block py-1 hover:bg-white/10 rounded">Berkas</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-white/20 transition">
@@ -96,6 +95,7 @@
         <!-- Area Konten Utama -->
         <main class="flex-grow p-8 bg-gray-50">
             <div class="max-w-full">
+                <!-- Grid Statistik -->
                 <div class="grid grid-cols-4 gap-6 mb-8">
                     <div class="bg-white p-6 rounded-xl shadow-md hover-card transition-all border-l-4 border-gray-700">
                         <div class="flex justify-between items-center">
@@ -134,56 +134,87 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- Tabel Dokumen dengan Desain Modern -->
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-bold text-gray-700">Daftar Dokumen</h2>
-                        <input type="file" id="file-upload" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.txt">
-                        <button class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:opacity-90 transition flex items-center" onclick="document.getElementById('file-upload').click();">
-                            <i class="ri-add-line mr-2"></i> Unggah Dokumen
-                        </button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-gray-700">Nama File</th>
-                                    <th class="px-4 py-3 text-left text-gray-700">Tipe</th>
-                                    <th class="px-4 py-3 text-left text-gray-700">Ukuran</th>
-                                    <th class="px-4 py-3 text-left text-gray-700">Tanggal</th>
-                                    <th class="px-4 py-3 text-center text-gray-700">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b hover:bg-gray-100">
-                                    <td class="px-4 py-3">Laporan_RPL_2023.pdf</td>
-                                    <td class="px-4 py-3">PDF</td>
-                                    <td class="px-4 py-3">2.5 MB</td>
-                                    <td class="px-4 py-3">08 Des 2024</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <div class="flex justify-center space-x-2">
-                                            <button class="text-gray-600 hover:text-gray-700 transition"><i class="ri-eye-line"></i></button>
-                                            <button class="text-blue-600 hover:text-blue-700 transition"><i class="ri-edit-line"></i></button>
-                                            <button class="text-red-600 hover:text-red-700 transition"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+                <!-- Tabel Dokumen -->
+               <div class="bg-white rounded-xl shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-700">Daftar Dokumen</h2>
+        <div class="flex items-center space-x-4">
+            <!-- Kotak Pencarian -->
+            <input type="text" id="searchBar" placeholder="Cari dokumen..." class="w-60 px-3 py-2 border rounded-lg shadow-sm focus:ring focus:ring-gray-200 transition">
+            <!-- Drop-Down Sorting -->
+            <select id="sortDropdown" class="px-3 py-2 border rounded-lg shadow-sm">
+                <option value="terbaru">Terbaru</option>
+                <option value="nama">Nama</option>
+                <option value="kategori">Kategori</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Tabel Dokumen -->
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="bg-gray-100 border-b">
+                <th class="py-2 px-4 font-semibold text-gray-600">No</th>
+                <th class="py-2 px-4 font-semibold text-gray-600">Nama Dokumen</th>
+                <th class="py-2 px-4 font-semibold text-gray-600">Kategori</th>
+                <th class="py-2 px-4 font-semibold text-gray-600">Tanggal</th>
+                <th class="py-2 px-4 font-semibold text-gray-600">Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="documentTable">
+            <!-- Contoh Data -->
+            <tr class="hover:bg-gray-50">
+                <td class="py-2 px-4">1</td>
+                <td class="py-2 px-4">Rencana Pelajaran 2024</td>
+                <td class="py-2 px-4">Pendidikan</td>
+                <td class="py-2 px-4">01/12/2024</td>
+                <td class="py-2 px-4 flex space-x-2">
+                    <div class="flex justify-center space-x-2">
+                    <button class="text-gray-600 hover:text-gray-700 transition"><i class="ri-eye-line"></i>
+                    </button>
+                    <button class="text-blue-600 hover:text-blue-700 transition"><i class="ri-edit-line"></i>
+                    </button>
+                    <button class="text-gray-700 hover:text-gray-900"><i class="ri-download-line"></i>
+                    </button>
+                      </div>
+                </td>
+            </tr>
+            <!-- Tambahkan dokumen lainnya di sini -->
+        </tbody>
+    </table>
+</div>
             </div>
         </main>
     </div>
 
-    <!-- Footer Modern -->
-    <footer class="bg-white shadow-md py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <p class="text-gray-500">&copy; 2024 Sistem Manajemen Dokumen Sekolah</p>
-            <img src="../public/images/logoas.png" alt="Logo Sekolah" class="h-8 w-auto">
+    <!-- Modal Tambah Folder -->
+    <div id="modal-tambah-folder" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-96">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold">Buat Folder Baru</h3>
+                <button id="tutup-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+            </div>
+            <input 
+                type="text" 
+                id="nama-folder-baru" 
+                placeholder="Nama Folder" 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4"
+            >
+            <div class="flex justify-end space-x-2">
+                <button id="batal-folder" class="px-4 py-2 bg-gray-200 rounded-lg">Batal</button>
+                <button id="simpan-folder" class="px-4 py-2 bg-gray-700 text-white rounded-lg">Simpan</button>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Footer Modern -->
+    
+
+
+
 
     <script src="../public/js/main.js"></script>
 </body>
