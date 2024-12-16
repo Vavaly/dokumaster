@@ -51,22 +51,22 @@
                         <input 
                             type="email" 
                             id="email" 
+                            name="email" 
                             required 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
                             placeholder="you@gmail.com"
                         />
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                         <div class="relative">
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
-                                placeholder="Enter your password"
-                                minlength="8"
-                            />
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required 
+                            placeholder="Enter your password"
+                            minlength="8"
+                        />
                             <div id="passwordStrength" class="mt-1 flex">
                                 <div class="password-strength w-0 bg-red-500"></div>
                                 <div class="password-strength w-0 bg-yellow-500 ml-1"></div>
@@ -95,11 +95,11 @@
                                 Remember me
                             </label>
                         </div>
-                        <div>
+                        <!-- <div>
                             <a href="#" id="forgotPassword" class="text-sm text-gray-600 hover:text-gray-900">
                                 Forgot Password?
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div>
                         <button 

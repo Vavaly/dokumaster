@@ -76,12 +76,12 @@
                             <span>Dokumen</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-white/20 transition">
                             <i class="ri-upload-cloud-line"></i>
                             <span>Upload Dokumen</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="setting.php" class="flex items-center space-x-3 py-3 px-4 rounded-lg hover:bg-white/20 transition">
                             <i class="ri-settings-3-line"></i>

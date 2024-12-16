@@ -50,36 +50,40 @@
     <div class="flex h-screen">
         <!-- Sidebar Modern untuk Pengguna -->
         <div class="w-64 sidebar text-white p-6 gradient-sidebar">
-            <div class="flex items-center mb-8">
-                <i class="ri-folder-line mr-3 text-4xl"></i> 
-                <h1 class="text-xl font-bold">Dokumen Saya</h1>
-            </div>
+    <div class="flex items-center mb-8">
+        <i class="ri-folder-line mr-3 text-4xl"></i> 
+        <h1 class="text-xl font-bold">Dokumen Saya</h1>
+    </div>
 
-            <nav>
-                <ul class="space-y-2">
+    <nav>
+        <ul class="space-y-2">
+            <li>
+                <a href="home.php" class="flex items-center px-4 py-2 rounded-lg bg-white/20 transition link">
+                    <i class="ri-home-line mr-3"></i>Home
+                </a>
+            </li>
+            <li class="relative">
+                <a href="document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                    <i class="ri-folder-2-line mr-3"></i>Dokumen Saya
+                </a>
+                <!-- Submenu (hidden by default) -->
+                <ul class="ml-6 space-y-2 hidden" id="submenu-dokumen">
                     <li>
-                        <a href="home.php" class="flex items-center px-4 py-2 rounded-lg bg-white/20 transition link">
-                            <i class="ri-home-line mr-3"></i>Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-folder-2-line mr-3"></i>Dokumen Saya
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-upload-cloud-line mr-3"></i>Unggah Dokumen
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
-                            <i class="ri-share-line mr-3"></i>Dokumen Berbagi
+                        <a href="add_folder.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                            <i class="ri-folder-add-line mr-3"></i>Tambah Folder
                         </a>
                     </li>
                 </ul>
-            </nav>
-        </div>
+            </li>
+          
+            <!-- <li>
+                <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                    <i class="ri-share-line mr-3"></i>Dokumen Berbagi
+                </a>
+            </li> -->
+        </ul>
+    </nav>
+</div>
 
         <!-- Konten Utama -->
         <div class="flex-1 overflow-y-auto main-content p-8">
