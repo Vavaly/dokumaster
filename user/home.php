@@ -171,4 +171,29 @@
     </footer>
 </body>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileToggle = document.getElementById('profileToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        profileToggle.addEventListener('click', () => {
+            if (dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.remove('hidden', 'opacity-0');
+                dropdownMenu.classList.add('opacity-100');
+            } else {
+                dropdownMenu.classList.add('hidden', 'opacity-0');
+                dropdownMenu.classList.remove('opacity-100');
+            }
+        });
+
+        // Menutup dropdown ketika klik di luar
+        window.addEventListener('click', (e) => {
+            if (!profileToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden', 'opacity-0');
+                dropdownMenu.classList.remove('opacity-100');
+            }
+        });
+    });
+   </script>
+
 </html>
