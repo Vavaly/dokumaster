@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
+
 <body class="antialiased font-inter bg-[#f5f7fb]">
     <!-- Header -->
     <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
@@ -62,14 +64,15 @@
         <!-- Sidebar Modern -->
         <div class="w-64 text-white p-6 bg-gradient-to-br from-[#374151] to-[#1f2937]">
             <div class="flex items-center mb-8">
-                <i class="ri-folder-line mr-3 text-4xl"></i> 
+                <i class="ri-folder-line mr-3 text-4xl"></i>
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
             </div>
 
             <nav>
                 <ul class="space-y-2">
                     <li>
-                        <a href="dashboard.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition">
+                        <a href="dashboard.php"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition">
                             <i class="ri-dashboard-line mr-3"></i>Dashboard
                         </a>
                     </li>
@@ -79,7 +82,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="document.php" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition">
+                        <a href="document.php"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition">
                             <i class="ri-folder-2-line mr-3"></i>Dokumen
                         </a>
                     </li>
@@ -107,7 +111,8 @@
 
             <!-- Kartu Statistik -->
             <div class="grid grid-cols-4 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-sm text-gray-500">Total Dokumen</h3>
@@ -116,8 +121,9 @@
                         <i class="ri-file-text-line text-3xl text-[#1f2937]"></i>
                     </div>
                 </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-sm text-gray-500">Total Pengguna</h3>
@@ -126,26 +132,28 @@
                         <i class="ri-user-line text-3xl text-[#1f2937]"></i>
                     </div>
                 </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-sm text-gray-500">Dokumen Baru</h3>
+                            <h3 class="text-sm text-gray-500">Pengguna Aktif</h3>
                             <p class="text-2xl font-bold text-[#374151]">10</p>
                         </div>
-                        <i class="ri-folder-add-line text-3xl text-[#1f2937]"></i>
+                        <i class="ri-user-line text-3xl text-[#1f2937]"></i>
                     </div>
                 </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:translate-y-[-5px] hover:shadow-gray-300/30">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-sm text-gray-500">Ruang Penyimpanan</h3>
-                            <p class="text-2xl font-bold text-[#374151]">75%</p>
+                            <h3 class="text-sm text-gray-500">Pengguna Tidak Aktif</h3>
+                            <p class="text-2xl font-bold text-[#374151]">1</p>
                         </div>
-                        <i class="ri-database-line text-3xl text-[#1f2937]"></i>
+                        <i class="ri-user-line text-3xl text-[#1f2937]"></i>
                     </div>
                 </div>
+
             </div>
 
             <!-- Bagian Bawah Dashboard -->
@@ -238,4 +246,5 @@
         });
     </script>
 </body>
+
 </html>

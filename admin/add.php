@@ -87,11 +87,5 @@
             </form>
         </div>
     </div>
-
-    <script>
-        function closeModal() {
-            document.body.innerHTML = ''; // Ini hanya contoh, dalam praktiknya Anda akan menggunakan metode lain untuk menyembunyikan modal
-        }
-    </script>
 </body>
 </html>

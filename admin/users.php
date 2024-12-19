@@ -22,8 +22,55 @@
 </head>
 
 <body class="antialiased">
+    <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
+            <!-- Logo -->
+            <div class="flex items-center space-x-4">
+                <img src="../public/images/logo.png" alt="Logo" class="h-[180px] mt-4 w-auto">
+            </div>
 
-    <div class="flex h-screen">
+            <!-- Weather, Time, Date in Center -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
+                <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-full shadow">
+                    <i class="ri-sun-line text-gray-600"></i>
+                    <span class="text-gray-700 font-medium">30°C</span>
+                </div>
+                <span class="text-gray-700 font-medium">
+                    <i class="bi bi-clock"></i> 07:29 WIB
+                </span>
+                <span class="text-gray-700 font-medium">
+                    <i class="bi bi-calendar"></i> Monday, 26 August 2024
+                </span>
+            </div>
+
+            <!-- Profile and Dropdown -->
+            <div class="flex items-center space-x-4 ml-auto">
+                <h2 class="text-xl font-semibold text-gray-700">Selamat pagi,</h2>
+                <button class="focus:outline-none" id="profileToggle">
+                    <img src="../public/images/pp.jpg" alt="Profil"
+                        class="h-10 w-10 rounded-full cursor-pointer ring-2 ring-gray-700">
+                </button>
+                <span class="text-gray-700 font-medium">Rival</span>
+
+                <div id="dropdownMenu"
+                    class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden opacity-0 transition-all duration-300 ease-in-out">
+                    <ul class="py-1">
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-gray-700 transition">
+                            <a href="#" class="block">Profil</a>
+                        </li>
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-gray-700 transition">
+                            <a href="setting.php" class="block">Pengaturan</a>
+                        </li>
+                        <li class="px-4 py-2 text-red-500 hover:bg-red-50 cursor-pointer hover:text-red-700 transition">
+                            <a href="#" class="block">Keluar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex h-screen mt-24">
+
         <!-- Bilah Sisi Modern -->
         <div class="w-64 sidebar text-white p-6">
             <div class="flex items-center mb-8">
@@ -53,10 +100,6 @@
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-800">Manajemen Pengguna</h1>
                 <div class="flex items-center space-x-4">
-                    <div class="bg-white shadow rounded-full p-2 profile-img">
-                        <i class="ri-notification-line notification-icon"></i>
-                    </div>
-                    <img src="../public/images/pp.jpg" alt="Profil" class="h-10 w-10 rounded-full">
                 </div>
             </div>
 
@@ -81,44 +124,53 @@
                             </button>
                         </div>
 
-                        <form>
+                        <form method="POST" action="your_php_script.php">
                             <div class="space-y-4">
+                                <div>
+                                    <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Peran</label>
+                                    <select id="role" name="role"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
+                                </div>
+
                                 <div>
                                     <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Nama
                                         Pengguna</label>
-                                    <input type="text" id="username"
+                                    <input type="text" id="username" name="username"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                                        placeholder="Masukkan nama pengguna">
+                                        placeholder="Masukkan nama pengguna" required>
                                 </div>
 
                                 <div>
                                     <label for="email"
                                         class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                    <input type="email" id="email"
+                                    <input type="email" id="email" name="email"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                                        placeholder="Masukkan email pengguna">
+                                        placeholder="Masukkan email pengguna" required>
                                 </div>
 
                                 <div>
                                     <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Kata
                                         Sandi</label>
-                                    <input type="password" id="password"
+                                    <input type="password" id="password" name="password"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                                        placeholder="Masukkan kata sandi">
+                                        placeholder="Masukkan kata sandi" required>
+                                </div>
+                                <div class="flex space-x-4 mt-6">
+                                    <button type="submit"
+                                        class="flex-1 bg-gray-800 text-white py-2 rounded-lg hover:bg-blue-700 transition transform active:scale-95">
+                                        Tambah
+                                    </button>
+                                    <button type="button" id="cancelModal"
+                                        class="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition transform active:scale-95">
+                                        Batal
+                                    </button>
                                 </div>
                             </div>
-
-                            <div class="flex space-x-4 mt-6">
-                                <button type="submit"
-                                    class="flex-1 bg-gray-800 text-white py-2 rounded-lg hover:bg-blue-700 transition transform active:scale-95">
-                                    Tambah
-                                </button>
-                                <button type="button" id="cancelModal"
-                                    class="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition transform active:scale-95">
-                                    Batal
-                                </button>
-                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -181,8 +233,23 @@
                 <div class="flex justify-between items-center mt-4">
                     <div class="text-sm text-gray-700">Menampilkan 1 hingga 10 dari 20 entri</div>
                     <div class="flex space-x-2">
-                        <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Prev</button>
-                        <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Next</button>
+                        <div class="flex items-center justify-center space-x-4">
+                            <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                Prev
+                            </button>
+                            <span class="text-gray-700 font-medium">1</span>
+                            <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                                Next
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
