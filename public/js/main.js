@@ -59,34 +59,34 @@
 
 // // // main.js
 
-// // function updateGreetingAndTime() {
-// //   const greetingElement = document.getElementById("greeting");
-// //   const dateTimeElement = document.getElementById("date-time");
+function updateGreetingAndTime() {
+  const greetingElement = document.getElementById("greeting");
+  const dateTimeElement = document.getElementById("date-time");
 
-// //   const now = new Date();
-// //   const hours = now.getHours();
-// //   const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-// //   const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  const now = new Date();
+  const hours = now.getHours();
+  const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-// //   // Tentukan salam berdasarkan waktu
-// //   let greeting = "Selamat Pagi";
-// //   if (hours >= 12 && hours < 18) {
-// //     greeting = "Selamat Siang";
-// //   } else if (hours >= 18 && hours < 24) {
-// //     greeting = "Selamat Malam";
-// //   }
+  // Tentukan salam berdasarkan waktu
+  let greeting = "Selamat Pagi";
+  if (hours >= 12 && hours < 18) {
+    greeting = "Selamat Siang";
+  } else if (hours >= 18 && hours < 24) {
+    greeting = "Selamat Malam";
+  }
 
-// //   // Format tanggal dan waktu
-// //   const day = days[now.getDay()];
-// //   const date = now.getDate();
-// //   const month = months[now.getMonth()];
-// //   const year = now.getFullYear();
-// //   const formattedTime = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  // Format tanggal dan waktu
+  const day = days[now.getDay()];
+  const date = now.getDate();
+  const month = months[now.getMonth()];
+  const year = now.getFullYear();
+  const formattedTime = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
-// //   // Perbarui elemen
-// //   greetingElement.textContent = `${greeting}, Rival`;
-// //   dateTimeElement.textContent = `${day}, ${date} ${month} ${year} - ${formattedTime}`;
-// // }
+  // Perbarui elemen
+  greetingElement.textContent = `${greeting}, Rival`;
+  dateTimeElement.textContent = `${day}, ${date} ${month} ${year} - ${formattedTime}`;
+}
 
 // // // Perbarui setiap detik
 // // setInterval(updateGreetingAndTime, 1000);

@@ -1,3 +1,26 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
+    header('Location: login.php');
+    exit();
+}
+
+// Include database connection
+require_once '../functions/config.php';
+
+// Get current user data
+$userId = $_SESSION['user_id'];
+$userQuery = "SELECT * FROM users WHERE user_id = ?";
+$userStmt = $conn->prepare($userQuery);
+$userStmt->bind_param("i", $userId);
+$userStmt->execute();
+$currentUser = $userStmt->get_result()->fetch_assoc();
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -84,12 +107,14 @@
             </div>
             <!-- Profil, Greeting, dan Username di Kanan -->
             <div class="flex items-center space-x-4 ml-auto">
-                <h2 id="greeting" class="text-xl font-semibold text-gray-700">Selamat pagi,</h2>
+                <h2 class="text-xl font-semibold text-gray-700">Selamat pagi,</h2>
                 <button class="focus:outline-none" id="profileToggle">
-                    <img src="../public/images/pp.jpg" alt="Profil"
-                        class="h-10 w-10 rounded-full cursor-pointer ring-2 ring-gray-700">
+                    <img src="<?php echo !empty($currentUser['profile_photo']) ? htmlspecialchars($currentUser['profile_photo']) : '../public/images/pp.jpg'; ?>"
+                        alt="Profil" class="h-10 w-10 rounded-full cursor-pointer ring-2 ring-gray-700">
                 </button>
-                <span class="text-gray-700 font-medium">Rival</span>
+                <span class="text-gray-700 font-medium">
+                    <?php echo htmlspecialchars($currentUser['username'] ?? 'Guest'); ?>
+                </span>
                 <div id="dropdownMenu"
                     class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden opacity-0 transition-all duration-300 ease-in-out">
                     <ul class="py-1">

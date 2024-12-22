@@ -7,62 +7,13 @@
     <title>Manajemen Dokumen - Dashboard Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f5f7fb;
-        }
-
-        .sidebar {
-            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-        }
-
-        .hover-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(70, 70, 70, 0.15);
-        }
-
-        .main-content {
-            background-color: #eef2f5;
-        }
-
-        .card-icon {
-            color: #374151;
-        }
-
-        .card-title {
-            color: #374151;
-        }
-
-        .link:hover {
-            background-color: #1f2937;
-        }
-
-        .notification-icon {
-            color: #374151;
-        }
-
-        .profile-img:hover {
-            border-color: #374151;
-        }
-
-        .button-primary {
-            background-color: #374151;
-            color: #fff;
-        }
-
-        .button-primary:hover {
-            background-color: #273036;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="antialiased">
+<body class="antialiased font-[Inter] bg-[#f5f7fb]">
     <div class="flex h-screen">
         <!-- Sidebar Modern -->
-        <div class="w-64 sidebar text-white p-6 gradient-sidebar">
+        <div class="w-64 bg-gradient-to-br from-gray-700 to-gray-800 text-white p-6">
             <div class="flex items-center mb-8">
                 <i class="ri-folder-line mr-3 text-4xl"></i>
                 <h1 class="text-xl font-bold">Dokumen Admin</h1>
@@ -72,24 +23,25 @@
                 <ul class="space-y-2">
                     <li>
                         <a href="dashboard.php"
-                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition duration-200">
                             <i class="ri-dashboard-line mr-3"></i>Dashboard
                         </a>
                     </li>
                     <li>
                         <a href="users.php"
-                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition duration-200">
                             <i class="ri-user-settings-line mr-3"></i>Manajemen Pengguna
                         </a>
                     </li>
                     <li>
                         <a href="document.php"
-                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition duration-200">
                             <i class="ri-folder-2-line mr-3"></i>Dokumen
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link">
+                        <a href="#"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition duration-200">
                             <i class="ri-settings-3-line mr-3"></i>Pengaturan
                         </a>
                     </li>
@@ -98,13 +50,13 @@
         </div>
 
         <!-- Konten Utama -->
-        <div class="flex-1 overflow-y-auto main-content p-8">
+        <div class="flex-1 overflow-y-auto bg-[#eef2f5] p-8">
             <!-- Header -->
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-800">Manajemen Dokumen</h1>
                 <div class="flex items-center space-x-4">
-                    <div class="bg-white shadow rounded-full p-2 profile-img">
-                        <i class="ri-notification-line notification-icon"></i>
+                    <div class="bg-white shadow rounded-full p-2 hover:border-gray-700 transition duration-200">
+                        <i class="ri-notification-line text-gray-700"></i>
                     </div>
                     <img src="../public/images/pp.jpg" alt="Profil" class="h-10 w-10 rounded-full">
                 </div>
@@ -122,7 +74,7 @@
                     <input type="text" placeholder="Cari dokumen..." class="border rounded-lg px-3 py-2 w-64">
                 </div>
                 <button
-                    class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition flex items-center">
+                    class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-200 flex items-center">
                     <i class="ri-add-line mr-2"></i> Unggah Dokumen
                 </button>
             </div>
@@ -142,7 +94,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b hover:bg-gray-50 transition">
+                        <tr class="border-b hover:bg-gray-50 transition duration-200">
                             <td class="py-3 px-2">1</td>
                             <td class="py-3 px-2 flex items-center">
                                 <i class="ri-file-line mr-2 text-gray-700"></i>
@@ -158,22 +110,22 @@
                             <td class="py-3 px-2">01 Jan 2024</td>
                             <td class="py-3 px-2">
                                 <div class="flex space-x-2">
-                                    <button class="text-gray-700 hover:text-gray-900">
+                                    <button class="text-gray-700 hover:text-gray-900 transition duration-200">
                                         <i class="ri-eye-line"></i>
                                     </button>
-                                    <button class="text-gray-700 hover:text-gray-900">
+                                    <button class="text-gray-700 hover:text-gray-900 transition duration-200">
                                         <i class="ri-download-line"></i>
                                     </button>
-                                    <button class="text-blue-600 hover:text-blue-700 transition">
+                                    <button class="text-blue-600 hover:text-blue-700 transition duration-200">
                                         <i class="ri-edit-line"></i>
                                     </button>
-                                    <button class="text-red-500 hover:text-red-700">
+                                    <button class="text-red-500 hover:text-red-700 transition duration-200">
                                         <i class="ri-delete-bin-line"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                        <tr class="border-b hover:bg-gray-50 transition">
+                        <tr class="border-b hover:bg-gray-50 transition duration-200">
                             <td class="py-3 px-2">2</td>
                             <td class="py-3 px-2 flex items-center">
                                 <i class="ri-file-line mr-2 text-gray-700"></i>
@@ -189,16 +141,16 @@
                             <td class="py-3 px-2">02 Jan 2024</td>
                             <td class="py-3 px-2">
                                 <div class="flex space-x-2">
-                                    <button class="text-gray-700 hover:text-gray-900">
+                                    <button class="text-gray-700 hover:text-gray-900 transition duration-200">
                                         <i class="ri-eye-line"></i>
                                     </button>
-                                    <button class="text-gray-700 hover:text-gray-900">
+                                    <button class="text-gray-700 hover:text-gray-900 transition duration-200">
                                         <i class="ri-download-line"></i>
                                     </button>
-                                    <button class="text-blue-600 hover:text-blue-700 transition"><i
-                                            class="ri-edit-line"></i>
+                                    <button class="text-blue-600 hover:text-blue-700 transition duration-200">
+                                        <i class="ri-edit-line"></i>
                                     </button>
-                                    <button class="text-red-500 hover:text-red-700">
+                                    <button class="text-red-500 hover:text-red-700 transition duration-200">
                                         <i class="ri-delete-bin-line"></i>
                                     </button>
                                 </div>
@@ -230,7 +182,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

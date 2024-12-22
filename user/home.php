@@ -1,3 +1,50 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
+    header('Location: login.php');
+    exit();
+}
+
+// Include database connection
+require_once '../functions/config.php';
+
+// Get current user data
+$userId = $_SESSION['user_id'];
+$userQuery = "SELECT * FROM users WHERE user_id = ?";
+$userStmt = $conn->prepare($userQuery);
+$userStmt->bind_param("i", $userId);
+$userStmt->execute();
+$currentUser = $userStmt->get_result()->fetch_assoc();
+
+// Get total documents count for current user
+$totalQuery = "SELECT COUNT(*) as total FROM documents WHERE uploaded_by = ?";
+$totalStmt = $conn->prepare($totalQuery);
+$totalStmt->bind_param("i", $userId);
+$totalStmt->execute();
+$result = $totalStmt->get_result();
+$row = $result->fetch_assoc();
+$totalDocuments = $row['total'];
+
+// Get documents list with folder names
+$documentsQuery = "SELECT d.*, f.folder_name, 
+                          DATE_FORMAT(d.created_at, '%d/%m/%Y') as formatted_date,
+                          (d.file_size / 1024) as file_size_kb 
+                   FROM documents d 
+                   LEFT JOIN folders f ON d.folder_id = f.folder_id 
+                   WHERE d.uploaded_by = ? 
+                   ORDER BY d.created_at DESC";
+$documentsStmt = $conn->prepare($documentsQuery);
+$documentsStmt->bind_param("i", $userId);
+$documentsStmt->execute();
+$documents = $documentsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// Close statements
+$userStmt->close();
+$totalStmt->close();
+$documentsStmt->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -32,32 +79,17 @@
                     <i class="bi bi-calendar"></i> Monday, 26 August 2024
                 </span>
             </div>
-
             <!-- Profile and Dropdown -->
             <div class="flex items-center space-x-4 ml-auto">
                 <h2 class="text-xl font-semibold text-gray-700">Selamat pagi,</h2>
                 <button class="focus:outline-none" id="profileToggle">
-                    <img src="../public/images/pp.jpg" alt="Profil"
-                        class="h-10 w-10 rounded-full cursor-pointer ring-2 ring-gray-700">
+                    <img src="<?php echo !empty($currentUser['profile_photo']) ? htmlspecialchars($currentUser['profile_photo']) : '../public/images/pp.jpg'; ?>"
+                        alt="Profil" class="h-10 w-10 rounded-full cursor-pointer ring-2 ring-gray-700">
                 </button>
-                <span class="text-gray-700 font-medium">Rival</span>
-
-                <div id="dropdownMenu"
-                    class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden opacity-0 transition-all duration-300 ease-in-out">
-                    <ul class="py-1">
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-gray-700 transition">
-                            <a href="#" class="block">Profil</a>
-                        </li>
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-gray-700 transition">
-                            <a href="setting.php" class="block">Pengaturan</a>
-                        </li>
-                        <li class="px-4 py-2 text-red-500 hover:bg-red-50 cursor-pointer hover:text-red-700 transition">
-                            <a href="#" class="block">Keluar</a>
-                        </li>
-                    </ul>
-                </div>
+                <span class="text-gray-700 font-medium">
+                    <?php echo htmlspecialchars($currentUser['username'] ?? 'Guest'); ?>
+                </span>
             </div>
-        </div>
     </header>
 
     <!-- Main Content Wrapper -->
@@ -70,7 +102,7 @@
             </div>
             <nav>
                 <ul class="space-y-2">
-                <li>
+                    <li>
                         <a href="home.php" class="flex items-center px-4 py-2 rounded-lg bg-white/20 transition link">
                             <i class="ri-home-line mr-3"></i>Home
                         </a>
@@ -103,7 +135,7 @@
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Total Dokumen</h3>
-                                <p class="text-3xl font-bold text-gray-700">254</p>
+                                <p class="text-3xl font-bold text-gray-700"><?php echo $totalDocuments; ?></p>
                             </div>
                             <i class="ri-file-text-line text-4xl text-gray-300"></i>
                         </div>
@@ -137,30 +169,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-2 px-4">1</td>
-                                <td class="py-2 px-4">Rencana Pelajaran 2024</td>
-                                <td class="py-2 px-4">Pendidikan</td>
-                                <td class="py-2 px-4">01/12/2024</td>
-                                <td class="py-2 px-4 flex space-x-2">
-                                    <button class="text-gray-600 hover:text-gray-700 transition">
-                                        <i class="ri-eye-line" title="Lihat"></i>
-                                    </button>
-                                    <button class="text-blue-600 hover:text-blue-700 transition">
-                                        <i class="ri-edit-line" title="Edit"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-700">
-                                        <i class="ri-delete-bin-line" title="Hapus"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php if ($documents): ?>
+                                <?php foreach ($documents as $index => $doc): ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4"><?php echo $index + 1; ?></td>
+                                        <td class="py-2 px-4"><?php echo htmlspecialchars($doc['document_name']); ?></td>
+                                        <td class="py-2 px-4"><?php echo htmlspecialchars($doc['folder_name']); ?></td>
+                                        <td class="py-2 px-4"><?php echo htmlspecialchars($doc['formatted_date']); ?></td>
+                                        <td class="py-2 px-4 flex space-x-2">
+                                            <a href="view_document.php?id=<?php echo $doc['document_id']; ?>"
+                                                class="text-gray-600 hover:text-gray-700 transition">
+                                                <i class="ri-eye-line" title="Lihat"></i>
+                                            </a>
+                                            <a href="edit_document.php?id=<?php echo $doc['document_id']; ?>"
+                                                class="text-blue-600 hover:text-blue-700 transition">
+                                                <i class="ri-edit-line" title="Edit"></i>
+                                            </a>
+                                            <button onclick="deleteDocument(<?php echo $doc['document_id']; ?>)"
+                                                class="text-red-600 hover:text-red-700">
+                                                <i class="ri-delete-bin-line" title="Hapus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="5" class="py-4 px-4 text-center text-gray-500">
+                                        Tidak ada dokumen yang tersedia
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </main>
-
     </div>
 
     <!-- Footer -->
@@ -170,30 +213,5 @@
         </div>
     </footer>
 </body>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const profileToggle = document.getElementById('profileToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-
-        profileToggle.addEventListener('click', () => {
-            if (dropdownMenu.classList.contains('hidden')) {
-                dropdownMenu.classList.remove('hidden', 'opacity-0');
-                dropdownMenu.classList.add('opacity-100');
-            } else {
-                dropdownMenu.classList.add('hidden', 'opacity-0');
-                dropdownMenu.classList.remove('opacity-100');
-            }
-        });
-
-        // Menutup dropdown ketika klik di luar
-        window.addEventListener('click', (e) => {
-            if (!profileToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.add('hidden', 'opacity-0');
-                dropdownMenu.classList.remove('opacity-100');
-            }
-        });
-    });
-   </script>
 
 </html>
