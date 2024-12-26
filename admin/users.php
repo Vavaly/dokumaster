@@ -81,7 +81,7 @@
                 <ul class="space-y-2">
                     <li><a href="dashboard.php"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link"><i
-                                class="ri-dashboard-line mr-3"></i>Dasbor</a></li>
+                                class="ri-dashboard-line mr-3"></i>Dashboard</a></li>
                     <li><a href="users.php"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-white/20 transition link"><i
                                 class="ri-user-settings-line mr-3"></i>Manajemen Pengguna</a></li>

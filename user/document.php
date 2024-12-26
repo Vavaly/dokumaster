@@ -1,24 +1,98 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
-    header('Location: login.php');
+require_once '../functions/config.php';
+
+// Cek login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
     exit();
 }
 
-// Include database connection
-require_once '../functions/config.php';
-
-// Get current user data
+// Ambil data user
 $userId = $_SESSION['user_id'];
-$userQuery = "SELECT * FROM users WHERE user_id = ?";
-$userStmt = $conn->prepare($userQuery);
-$userStmt->bind_param("i", $userId);
-$userStmt->execute();
-$currentUser = $userStmt->get_result()->fetch_assoc();
+$stmt = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$currentUser = $result->fetch_assoc();
 
+// Handle upload file
+if (isset($_POST['upload'])) {
+    $folderId = $_POST['folder_id'];
+    $file = $_FILES['document'];
+    
+    if ($file['error'] == 0) {
+        $fileName = $file['name'];
+        $fileSize = $file['size'];
+        $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+        $uploadPath = '../uploads/' . $fileName;
+
+        // Upload file
+        if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            // Simpan ke database
+            $query = "INSERT INTO documents (folder_id, document_name, file_path, file_type, file_size, uploaded_by) 
+                     VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("isssii", $folderId, $fileName, $uploadPath, $fileType, $fileSize, $userId);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success'] = "File berhasil diupload!";
+            } else {
+                $_SESSION['error'] = "Gagal menyimpan file ke database.";
+            }
+        } else {
+            $_SESSION['error'] = "Gagal mengupload file.";
+        }
+    }
+    header("Location: document.php");
+    exit();
+}
+
+// Handle hapus dokumen
+if (isset($_POST['delete'])) {
+    $documentId = $_POST['document_id'];
+    
+    $query = "DELETE FROM documents WHERE document_id = ? AND uploaded_by = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $documentId, $userId);
+    
+    if ($stmt->execute()) {
+        $_SESSION['success'] = "Dokumen berhasil dihapus!";
+    } else {
+        $_SESSION['error'] = "Gagal menghapus dokumen.";
+    }
+    header("Location: document.php");
+    exit();
+}
+
+// Ambil daftar folder
+$folderQuery = "SELECT * FROM folders WHERE created_by = ?";
+$stmt = $conn->prepare($folderQuery);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$folders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// Ambil daftar dokumen
+$docQuery = "SELECT d.*, f.folder_name 
+             FROM documents d 
+             LEFT JOIN folders f ON d.folder_id = f.folder_id 
+             WHERE d.uploaded_by = ?
+             ORDER BY d.created_at DESC";
+$stmt = $conn->prepare($docQuery);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$documents = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// Function untuk format ukuran file
+function formatSize($bytes) {
+    if ($bytes > 1024 * 1024) {
+        return round($bytes / (1024 * 1024), 2) . " MB";
+    } elseif ($bytes > 1024) {
+        return round($bytes / 1024, 2) . " KB";
+    }
+    return $bytes . " B";
+}
 ?>
-
-
 
 
 <!DOCTYPE html>

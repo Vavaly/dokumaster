@@ -1,66 +1,84 @@
 <?php
-include 'config.php';
 
-// Create Document
-function createDocument($folder_id, $document_name, $file_path, $file_type, $file_size, $uploaded_by) {
-    global $pdo;
-    $sql = "INSERT INTO documents (folder_id, document_name, file_path, file_type, file_size, uploaded_by) 
-            VALUES (:folder_id, :document_name, :file_path, :file_type, :file_size, :uploaded_by)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':folder_id' => $folder_id,
-        ':document_name' => $document_name,
-        ':file_path' => $file_path,
-        ':file_type' => $file_type,
-        ':file_size' => $file_size,
-        ':uploaded_by' => $uploaded_by
-    ]);
+require_once "functions/config.php";
+
+
+
+function getJumlahDokumen() {
+    global $koneksi;
+    $query = "SELECT COUNT(*) as total FROM documents";
+    $result = mysqli_query($koneksi, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'];
 }
 
-// Read Documents
-function getDocuments() {
-    global $pdo;
-    $sql = "SELECT * FROM documents";
-    $stmt = $pdo->query($sql);
-    return $stmt->fetchAll();
+function getJumlahPengguna() {
+    global $koneksi;
+    $query = "SELECT COUNT(*) as total FROM users";
+    $result = mysqli_query($koneksi, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'];
 }
 
-// Update Document
-function updateDocument($document_id, $document_name, $file_path, $file_type, $file_size) {
-    global $pdo;
-    $sql = "UPDATE documents SET document_name = :document_name, file_path = :file_path, 
-            file_type = :file_type, file_size = :file_size WHERE document_id = :document_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':document_name' => $document_name,
-        ':file_path' => $file_path,
-        ':file_type' => $file_type,
-        ':file_size' => $file_size,
-        ':document_id' => $document_id
-    ]);
+function getPenggunaAktif() {
+    global $koneksi;
+    $query = "SELECT COUNT(*) as total FROM users WHERE is_active = 1";
+    $result = mysqli_query($koneksi, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'];
 }
 
-// Delete Document
-function deleteDocument($document_id) {
-    global $pdo;
-    $sql = "DELETE FROM documents WHERE document_id = :document_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([':document_id' => $document_id]);
+function getPenggunaTidakAktif() {
+    global $koneksi;
+    $query = "SELECT COUNT(*) as total FROM users WHERE is_active = 0";
+    $result = mysqli_query($koneksi, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'];
 }
 
-// Create User by Admin
-function createUser($username, $password, $email, $full_name, $role) {
-    global $pdo;
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (username, password, email, full_name, role) 
-            VALUES (:username, :password, :email, :full_name, :role)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':username' => $username,
-        ':password' => $hashed_password,
-        ':email' => $email,
-        ':full_name' => $full_name,
-        ':role' => $role
-    ]);
+function getDokumenTerbaru() {
+    global $koneksi;
+    $query = "SELECT d.*, u.username 
+              FROM documents d 
+              JOIN users u ON d.uploaded_by = u.user_id 
+              ORDER BY d.created_at DESC 
+              LIMIT 5";
+    $result = mysqli_query($koneksi, $query);
+    $dokumen = array();
+    while($row = mysqli_fetch_assoc($result)) {
+        $dokumen[] = $row;
+    }
+    return $dokumen;
 }
+
+function getPenggunaTerbaru() {
+    global $koneksi;
+    $query = "SELECT user_id, username, email, created_at 
+              FROM users 
+              ORDER BY created_at DESC 
+              LIMIT 5";
+    $result = mysqli_query($koneksi, $query);
+    $pengguna = array();
+    while($row = mysqli_fetch_assoc($result)) {
+        $pengguna[] = $row;
+    }
+    return $pengguna;
+}
+
+function formatTanggal($tanggal) {
+    return date('d M Y', strtotime($tanggal));
+}
+
+function cekLogin() {
+    session_start();
+    if(!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
+        header("Location: login.php");
+        exit();
+    }
+    if($_SESSION['role'] !== 'admin') {
+        header("Location: unauthorised.php");
+        exit();
+    }
+}
+
 ?>
